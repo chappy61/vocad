@@ -1,0 +1,647 @@
+/* =========================================
+   Prog Vocab CSS (All-in-One)
+   - Dark x Neon, index風トーン
+   - Rainbow active border / category glow
+   ========================================= */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Base */
+  --bg: #06080e;
+  --panel: #0b1324;
+  --ink: #e6f0ff;
+  --muted: #9bb2d0;
+  --line: #1a2744;
+
+  /* Accents */
+  --neon: #7cfcff;
+  --ok: #10b981;
+  --danger: #f43f5e;
+
+  /* Radii / Shadows */
+  --radius: 18px;
+  --shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  --inset: inset 0 0 0 1px rgba(124, 252, 255, 0.08), inset 0 -2px 0 rgba(255, 255, 255, 0.04);
+
+  /* Category colors */
+  --neon-php: #dc2626;
+  --neon-python: #3b82f6;
+  --neon-java: #f59e0b;
+  --neon-db: #006d13;
+  --neon-js: #ff2e85;
+  --neon-web: #06b6d4;
+  --neon-tools: #8b5cf6;
+}
+
+/* ---------- Base ---------- */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: radial-gradient(1000px 520px at 20% -10%, rgba(124, 252, 255, 0.07), transparent), var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic UI",
+    Meiryo, sans-serif;
+}
+.hidden {
+  display: none !important;
+}
+.muted {
+  color: var(--muted);
+}
+.w-full {
+  width: 100%;
+}
+.grow {
+  flex: 1;
+}
+
+/* ---------- Typography ---------- */
+h1,
+h2,
+.neon-text {
+  font-family: "Orbitron", system-ui, Inter, sans-serif;
+  letter-spacing: 0.5px;
+}
+.neon-text {
+  color: #e6f0ff;
+  text-shadow: 0 0 8px var(--neon), 0 0 18px color-mix(in oklab, var(--neon) 60%, transparent);
+}
+
+/* ---------- Header / Nav ---------- */
+header {
+  position: static;
+  top: auto;
+  z-index: 10;
+  box-shadow: var(--shadow);
+  padding: 14px 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+/* 左にタイトル、右端にアクションを寄せる */
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 左寄せ開始 */
+  gap: 12px;
+  padding: 10px 14px;
+  box-shadow: var(--glow);
+}
+
+.head-actions {
+  margin-left: auto; /* ← これで右端まで押し出す */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+/* 一覧のコード風チップ（そのまま流用可） */
+.title-chip {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12px;
+  line-height: 1;
+  color: #cfe7ff;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: box-shadow 0.15s, transform 0.05s;
+}
+
+.title-chip:active {
+  transform: translateY(1px);
+}
+
+/* モバイル微調整 */
+@media (max-width: 420px) {
+  .page-head h1 {
+    font-size: 18px;
+  }
+  .title-chip {
+    font-size: 11px;
+    padding: 3px 7px;
+  }
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.pill,
+.btn {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(9, 14, 24, 0.7);
+  padding: 10px 14px;
+  color: var(--ink);
+  box-shadow: var(--inset);
+  transition: transform 0.06s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.btn.ok {
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.22), rgba(16, 185, 129, 0.12));
+  border-color: rgba(16, 185, 129, 0.35);
+  margin-top: 1rem;
+}
+
+/* ---------- Layout ---------- */
+main {
+  max-width: 980px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.row.end {
+  justify-content: flex-end;
+}
+
+/* ---------- Chips ---------- */
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.chip {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0b1224;
+  color: var(--ink);
+  padding: 6px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.chip.active {
+  border: 2px solid transparent;
+  background: linear-gradient(#0b1224, #0b1224) padding-box, conic-gradient(var(--rainbow-stops)) border-box;
+  box-shadow: 0 0 12px color-mix(in oklab, var(--c, var(--neon)) 42%, transparent);
+}
+
+/* ---------- Cards / Quiz ---------- */
+.card3d {
+  position: relative;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(12, 18, 32, 0.88), rgba(10, 15, 26, 0.86));
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow), var(--inset);
+  padding: 15px;
+  margin-top: 10px;
+  min-height: 150px;
+  overflow: hidden;
+  /* neon glow color (JSで--neon-color設定 or data-catで自動) */
+  --neon-color: var(--neon);
+}
+.card3d::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius)+4px);
+  background: radial-gradient(80% 120% at 20% 0%, color-mix(in oklab, var(--neon-color), white 6%) 0%, transparent 60%);
+  filter: blur(14px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.card3d .face {
+  position: relative;
+}
+.face.front.big {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  text-align: center;
+  padding: 24px 8px;
+}
+.face.front.code {
+  font-size: clamp(10px, 4vw, 56px);
+  font-weight: normal;
+  text-align: center;
+  padding: 50px 8px;
+}
+.face .big {
+  font-size: clamp(24px, 3.6vw, 36px);
+}
+.code-block {
+  margin: 10px 0;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(6, 10, 18, 0.75);
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+input.w-full {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(8, 12, 20, 0.9);
+  color: var(--ink);
+  box-shadow: var(--inset);
+  outline: 0;
+}
+input.w-full:focus {
+  border-color: color-mix(in oklab, var(--neon-color), white 12%);
+  box-shadow: 0 0 0 4px rgba(124, 252, 255, 0.08), var(--inset);
+}
+
+/* Correct / Wrong flash */
+.card3d.correct {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.45), 0 0 22px rgba(16, 185, 129, 0.28), var(--shadow), var(--inset);
+}
+.card3d.wrong {
+  box-shadow: 0 0 0 1px rgba(244, 63, 94, 0.45), 0 0 22px rgba(244, 63, 94, 0.28), var(--shadow), var(--inset);
+}
+.shake {
+  animation: shake 0.35s;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+/* ---------- Category glow (data-cat で自動) ---------- */
+.card3d[data-cat="php"] {
+  --neon-color: var(--neon-php);
+}
+.card3d[data-cat="python"] {
+  --neon-color: var(--neon-python);
+}
+.card3d[data-cat="java"] {
+  --neon-color: var(--neon-java);
+}
+.card3d[data-cat="db"] {
+  --neon-color: var(--neon-db);
+}
+.card3d[data-cat="js"] {
+  --neon-color: var(--neon-js);
+}
+.card3d[data-cat="web"] {
+  --neon-color: var(--neon-web);
+}
+.card3d[data-cat="tools"] {
+  --neon-color: var(--neon-tools);
+}
+
+/* ---------- Toast (JSで使用) ---------- */
+#toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #0008;
+  color: #fff;
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  transition: opacity 0.2s;
+  max-width: 90vw;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+/* ---------- Landing (index) ---------- */
+body.landing {
+  background: #000;
+  color: #e6f0ff;
+}
+body.landing main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+body.landing .cat-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+body.landing .cat-btn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-align: left;
+  background: #0a0f18;
+  color: #e6f0ff;
+  border: 1px solid #1b2a3f;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  transform: translateZ(0);
+}
+body.landing .cat-btn.active {
+  border: 2px solid transparent;
+  background: linear-gradient(#0a0f18, #0a0f18) padding-box, conic-gradient(#707070) border-box;
+  box-shadow: 0 0 16px color-mix(in oklab, var(--c, var(--neon)) 80%, transparent);
+}
+body.landing .cat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+}
+body.landing .cat-head .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+body.landing .cat-name {
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+body.landing .cat-count {
+  opacity: 0.9;
+  font-variant-numeric: tabular-nums;
+  font-family: ui-monospace, monospace;
+}
+body.landing .bar {
+  margin-top: 8px;
+  height: 8px;
+  background: #0b1324;
+  border-radius: 99px;
+  overflow: hidden;
+  border: 1px solid #1b2a3f;
+}
+body.landing .bar i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+}
+/* ===== Calendar (landing) — 強スコープで上書き ===== */
+body.landing .cal-sec {
+  margin-top: 26px;
+}
+body.landing .cal-title {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+body.landing .calendar {
+  background: #0a0f18;
+  border: 1px solid #1b2a3f;
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+}
+
+/* ヘッダ行（日～土） */
+body.landing .cal-head {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 4px 2px 10px;
+  font-weight: 700;
+  opacity: 0.9;
+  text-align: center;
+}
+body.landing .wk {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* 7列グリッド本体 */
+body.landing .cal-grid {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(40px, 1fr));
+  gap: 6px;
+  align-items: stretch;
+}
+
+/* どんなタグでも“日セル”として見た目を統一（button/ a / span / div等） */
+body.landing .calendar .dcell,
+body.landing .calendar .day,
+body.landing .calendar [data-day],
+body.landing .calendar button,
+body.landing .calendar a {
+  all: unset; /* 既存ボタン装飾の影響を切る */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  min-height: 56px;
+  padding: 8px 6px;
+  border-radius: 10px;
+  background: #0b1324;
+  border: 1px solid #1b2a3f;
+  color: #e6f0ff;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+/* 数字（右上寄せ） */
+body.landing .calendar .dcell > span,
+body.landing .calendar .day > span,
+body.landing .calendar [data-day] > span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* 打刻ドット */
+body.landing .calendar .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon);
+  margin-top: auto; /* 下寄せ */
+  align-self: center;
+}
+
+/* 状態（今日・実績あり・選択など） */
+body.landing .calendar .today {
+  outline: 2px solid color-mix(in oklab, var(--neon) 55%, transparent);
+  box-shadow: 0 0 10px rgba(124, 252, 255, 0.25);
+}
+body.landing .calendar .marked {
+  background: linear-gradient(180deg, rgba(16, 185, 129, 0.16), rgba(11, 23, 25, 0.6));
+  border-color: rgba(16, 185, 129, 0.38);
+}
+body.landing .calendar .disabled {
+  opacity: 0.45;
+  filter: saturate(0.8);
+}
+
+/* ホバー（クリック可能な場合） */
+body.landing .calendar .clickable {
+  cursor: pointer;
+}
+body.landing .calendar .clickable:hover {
+  border-color: color-mix(in oklab, var(--neon) 40%, #1b2a3f);
+  box-shadow: 0 0 10px rgba(124, 252, 255, 0.15);
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: grid;
+  place-items: center;
+}
+.modal-body {
+  width: min(520px, 92vw);
+  background: #0b1324;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+label {
+  display: block;
+  margin: 10px 0 6px;
+}
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: #0a1120;
+  color: var(--ink);
+  border-radius: 10px;
+}
+
+/* ---------- Utilities ---------- */
+.neon-rainbow {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background: linear-gradient(#0b1224, #0b1224) padding-box, conic-gradient(var(--rainbow-stops)) border-box;
+  box-shadow: 0 0 12px color-mix(in oklab, var(--c, var(--neon)) 42%, transparent);
+}
+
+/* ---------- Fallback (no color-mix) ---------- */
+@supports not (color: color-mix(in oklab, white 50%, black)) {
+  .neon-text {
+    text-shadow: 0 0 8px var(--neon), 0 0 16px var(--neon);
+  }
+  .neon-rainbow,
+  .chip.active,
+  body.landing .cat-btn.active {
+    box-shadow: 0 0 14px var(--neon);
+  }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* ==== ヘッダー：中央に言語名、左右に残り/習得 ==== */
+body.landing .rowline-center {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* 左:残り / 中央:言語 / 右:習得 */
+  align-items: center;
+  gap: 8px;
+}
+
+body.landing .cat-remaining {
+  justify-self: start;
+  font-size: 12px;
+  opacity: 0.9;
+  padding: 2px 8px;
+  border: 1px solid #1b2a3f;
+  border-radius: 999px;
+  background: #0a1120;
+  font-variant-numeric: tabular-nums;
+}
+
+body.landing .cat-name {
+  justify-self: center; /* ど真ん中に固定 */
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 0.3px;
+}
+
+body.landing .cat-count {
+  justify-self: end;
+  font-size: 12px;
+  opacity: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 上限到達の視覚化（残りバッジを赤系に） */
+body.landing .cat-btn[data-disabled="1"] .cat-remaining {
+  background: #2a0f15;
+  border-color: #772437;
+  color: #ffd7dd;
+  opacity: 1;
+}
+
+/* もっと小さくしたい場合のオプション */
+body.landing.compact-rem .cat-remaining,
+body.landing.compact-rem .cat-count {
+  font-size: 11px;
+  padding: 1px 6px;
+  opacity: 0.8;
+}
+/* 共通トークン（足りてなければ追加） */
+:root {
+  --depth: 26px; /* 影の深さ */
+}
+
+/* 3Dカード：面の質感・縁の光・浮遊感を統一 */
+.card3d {
+  background: radial-gradient(
+      120% 160% at 18% 0%,
+      color-mix(in oklab, var(--neon-color) 10%, transparent) 0%,
+      transparent 58%
+    ),
+    linear-gradient(180deg, rgba(12, 18, 32, 0.88), rgba(10, 15, 26, 0.86));
+  border: 1px solid color-mix(in oklab, var(--neon-color) 22%, var(--line));
+  box-shadow: 0 8px var(--depth) rgba(0, 0, 0, 0.38), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* エッジ発光（内側の輪郭を薄く） */
+.card3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 18px color-mix(in oklab, var(--neon-color) 28%, transparent);
+  opacity: 0.7;
+}

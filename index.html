@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Prog Vocab – カテゴリ選択</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="landing">
+    <main class="select-stage">
+      <header class="page-head no-sticky">
+        <h1 class="neon-text">Prog Vocab</h1>
+        <nav class="head-actions">
+          <a href="list.html" class="title-chip" title="単語一覧">[ 一覧 ]</a>
+        </nav>
+      </header>
+      <div id="catList" class="cat-list" aria-label="カテゴリリスト">
+        <!-- JSで埋め込み（PHP / Python / Java / DB / JS / Web）-->
+      </div>
+      <div class="row">
+        <button id="startBtn" class="btn ok w-full neon-rainbow">START</button>
+      </div>
+      <!-- 月間カレンダー -->
+      <section class="cal-sec">
+        <div id="calendar" class="calendar"></div>
+      </section>
+    </main>
+    <script src="words.js"></script>
+    <script src="app.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

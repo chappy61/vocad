@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prog Vocab – 一覧</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="landing">
+    <main>
+      <header class="page-head no-sticky">
+        <h2 class="neon-text">Prog Vocab</h2>
+        <nav class="head-actions">
+          <a href="index.html" class="title-chip">[ back ]</a>
+        </nav>
+      </header>
+      <div class="card3d">
+        <div class="row">
+          <input id="q" class="w-full" placeholder="検索（単語/例文/解説）" />
+          <select id="cat" title="カテゴリ">
+            <option value="">全カテゴリ</option>
+            <option value="php">PHP</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="db">DB</option>
+            <option value="js">JS</option>
+            <option value="web">Web</option>
+            <option value="tools">Tools</option>
+          </select>
+          <select id="sort" title="並び替え">
+            <option value="due-asc">次の復習が早い順</option>
+            <option value="box-desc">Box 高い順</option>
+            <option value="seen-desc">よく出た順</option>
+            <option value="wrong-desc">ミスが新しい順</option>
+            <option value="word-asc">単語A→Z</option>
+          </select>
+          <button id="exportBtn" class="btn ghost" title="バックアップ">Export</button>
+          <label class="btn ghost" title="インポート">
+            Import
+            <input id="importFile" type="file" accept=".json,.csv" hidden />
+          </label>
+        </div>
+      </div>
+
+      <div id="list" class="card3d" style="margin-top: 14px; padding: 0">
+        <!-- JSで表を生成 -->
+      </div>
+    </main>
+
+    <script src="list.js"></script>
+  </body>
+</html>
